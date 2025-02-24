@@ -6,6 +6,7 @@ import { InputForm } from "@/components/input-form";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { DeploymentStatus } from "@/components/deployment-status";
 
 export default function Home() {
   const [suggestedTopics, setSuggestedTopics] = useState<string[]>([]);
@@ -47,9 +48,12 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <div className="container max-w-4xl mx-auto p-4">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-            CS Learning Assistant
-          </h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              CS Learning Assistant
+            </h1>
+            <DeploymentStatus />
+          </div>
           <Button
             variant="outline"
             size="icon"
