@@ -33,7 +33,15 @@ export async function generateCsResponse(userMessage: string) {
       response_format: { type: "json_object" }
     });
 
-    return JSON.parse(response.choices[0].message.content);
+    const content = response.choices[0]?.message?.content;
+    if (!content) {
+      throw new Error("No content received from OpenAI");
+    }
+
+    return JSON.parse(content) as {
+      answer: string;
+      suggestedTopics: string[];
+    };
   } catch (error) {
     console.error("OpenAI API error:", error);
     throw new Error("Failed to generate response. Please try again later.");
